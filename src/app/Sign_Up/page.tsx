@@ -1,5 +1,6 @@
 'use client'
 import Select from '@/components/app.selectninput'
+import fetchApi from '@/utils/fetchApi';
 import { useState } from 'react';
 
 export default function Register() {
@@ -9,22 +10,26 @@ export default function Register() {
         email: '',
     });
 
-    const handleChange = (e) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value,
         });
-        console.log(e);
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
         try {
+            const response = await fetchApi('/api/register', 'POST', formData);
+
+            console.log('Register success:', response);
 
         } catch (error) {
-
+            console.error('Register failed:', error);
         }
-    }
+    };
 
     return (
         <div className="relative z-0 w-full box-border "
@@ -45,7 +50,7 @@ export default function Register() {
                             <label htmlFor="username" className="mr-4">Tên đăng nhập</label>
                         </div>
                         <div className="col-span-2 flex justify-start items-center">
-                            <input type="text" name='username' onChange={handleChange} id="username" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập tên đăng nhập của bạn" />
+                            <input type="text" name='username' onChange={handleInputChange} id="username" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập tên đăng nhập của bạn" />
                         </div>
 
                         <div className="col-span-1 flex justify-start items-center pl-6">
@@ -131,7 +136,7 @@ export default function Register() {
                         </div>
 
                         <div className="col-span-3 w-full mt-10">
-                            <button className="w-full sm:w-[90%] py-2 border-2 border-blue-400 text-blue-400 rounded-xl hover:text-white hover:bg-blue-400 transition duration-300">
+                            <button className="w-full sm:w-[90%] py-2 border-2 border-blue-400 text-blue-400 rounded-xl hover:text-white hover:bg-blue-400 transition duration-300" onClick={handleSubmit}>
                                 Đăng ký
                             </button>
                         </div>
