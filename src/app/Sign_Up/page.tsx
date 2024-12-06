@@ -41,25 +41,25 @@ export default function Register() {
         }
     };
 
-    const handleSelectCity = (value: string) => {
-        setFormData({
-            ...formData,
-            city: value,  // Lưu giá trị thành phố từ dropdown
-        });
-    };
+    // const handleSelectCity = (value: string) => {
+    //     setFormData({
+    //         ...formData,
+    //         city: value,  // Lưu giá trị thành phố từ dropdown
+    //     });
+    // };
 
-    const handleSelectDistrict = (value: string) => {
-        setFormData({
-            ...formData,
-            district: value,  // Lưu giá trị thành phố từ dropdown
-        });
-    };
-    const handleSelectWard = (value: string) => {
-        setFormData({
-            ...formData,
-            ward: value,  // Lưu giá trị thành phố từ dropdown
-        });
-    };
+    // const handleSelectDistrict = (value: string) => {
+    //     setFormData({
+    //         ...formData,
+    //         district: value,  // Lưu giá trị thành phố từ dropdown
+    //     });
+    // };
+    // const handleSelectWard = (value: string) => {
+    //     setFormData({
+    //         ...formData,
+    //         ward: value,  // Lưu giá trị thành phố từ dropdown
+    //     });
+    // };
 
     return (
         <div className="relative z-0 w-full box-border "
@@ -140,7 +140,7 @@ export default function Register() {
                         <div className="col-span-1 flex justify-start items-center pl-6">
                             <label htmlFor="city" className="mr-4">Thành phố / Tỉnh</label>
                         </div>
-                        <div className="col-span-2 flex justify-start items-center">
+                        {/* <div className="col-span-2 flex justify-start items-center">
                             <Select onSelect={handleSelectCity}></Select>
                         </div>
 
@@ -156,7 +156,7 @@ export default function Register() {
                         </div>
                         <div className="col-span-2 flex justify-start items-center">
                             <Select onSelect={handleSelectWard}></Select>
-                        </div>
+                        </div> */}
 
                         <div className="col-span-1 flex justify-start items-center pl-6">
                             <label htmlFor="address" className="mr-4">Địa chỉ</label>

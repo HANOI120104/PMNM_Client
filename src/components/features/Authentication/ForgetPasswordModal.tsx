@@ -1,5 +1,7 @@
 'use client';
 import { useState } from 'react';
+import InputField from '@/components/ui/InputField'; // Import InputField
+import Button from '@/components/ui/Button';         // Import Button
 
 export default function ForgotPasswordModal() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,7 +31,6 @@ export default function ForgotPasswordModal() {
     return (
         <>
             {/* Trigger Button */}
-
             <button
                 className="text-blue-500 underline"
                 onClick={() => setIsModalOpen(true)}
@@ -47,52 +48,32 @@ export default function ForgotPasswordModal() {
                         >
                             ×
                         </button>
-                        <form onSubmit={handleSubmit} className="container mx-auto">
+                        <form onSubmit={handleSubmit} className="container mx-auto text-center">
                             <h2 className="my-4 text-2xl font-semibold">Khôi phục mật khẩu</h2>
-                            <div className="space-y-4 " >
+                            <div className="space-y-4   ">
                                 {/* Username Input */}
-                                <div className="grid grid-cols-3 items-center text-left">
-                                    <label htmlFor="username" className="mr-4 col-span-1">Tên đăng nhập</label>
-                                    <input
-                                        type="text"
-                                        id="username"
-                                        name="username"
-                                        value={formData.username}
-                                        onChange={handleInputChange}
-                                        className="w-[80%] border-b-2 px-2 py-1 col-span-2"
-                                        placeholder="Nhập tên đăng nhập"
-                                    />
-                                </div>
+                                <InputField
+                                    label="Tên đăng nhập"
+                                    type="text"
+                                    name="username"
+                                    value={formData.username}
+                                    onChange={handleInputChange}
+                                    placeholder="Nhập tên đăng nhập"
+                                />
 
                                 {/* Email Input */}
-                                <div className="grid grid-cols-3 items-center text-left">
-                                    <label htmlFor="email" className="mr-4 col-span-1">Email</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleInputChange}
-                                        className="w-[80%] border-b-2 px-2 py-1 col-span-2"
-                                        placeholder="Nhập email của bạn"
-                                    />
-                                </div>
+                                <InputField
+                                    label="Email"
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    placeholder="Nhập email của bạn"
+                                />
 
                                 {/* Submit Button */}
-                                <div className="mt-4">
-                                    <button
-                                        className="text-blue-500 underline px-2"
-                                        onClick={() => setIsModalOpen(false)}
-                                    >
-                                        Quay lại
-                                    </button>
-                                    <button
-                                        type="submit"
-                                        className="w-[80%] py-2 rounded-lg text-white bg-blue-500 hover:bg-blue-600"
-                                    >
-                                        Khôi phục mật khẩu
-                                    </button>
-                                </div>
+                                <Button text="Quay lại" onClick={() => setIsModalOpen(false)} />
+                                <Button text="Khôi phục mật khẩu" onClick={handleSubmit} />
                             </div>
                         </form>
                     </div>
