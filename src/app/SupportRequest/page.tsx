@@ -1,7 +1,62 @@
 'use client'
-import Select from '@/components/app.selectninput'
+import Select from '@/components/ui/app.selectninput'
+import fetchApi from '@/utils/fetchApi';
+import { useState } from 'react';
 
-export default function Contacts() {
+export default function SupportReport() {
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        gender: '',
+        phone: '',
+        email: '',
+        city: '',
+        district: '',
+        ward: '',
+        address: ''
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetchApi('http://localhost:8000/api/supportRequests', 'POST', formData);
+
+
+            console.log('Register success:', response);
+
+        } catch (error) {
+            console.error('Register failed:', error);
+        }
+    };
+
+    const handleSelectCity = (value: string) => {
+        setFormData({
+            ...formData,
+            city: value,  // Lưu giá trị thành phố từ dropdown
+        });
+    };
+
+    const handleSelectDistrict = (value: string) => {
+        setFormData({
+            ...formData,
+            district: value,  // Lưu giá trị thành phố từ dropdown
+        });
+    };
+    const handleSelectWard = (value: string) => {
+        setFormData({
+            ...formData,
+            ward: value,  // Lưu giá trị thành phố từ dropdown
+        });
+    };
 
     return (
         <div className="relative z-0 py-20 w-full box-border"
@@ -23,56 +78,56 @@ export default function Contacts() {
                             <label htmlFor="" className="mr-4">Họ và tên đệm</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <input type="text" className="w-[90%] border-b-2 px-2" placeholder="Nhập họ và tên đệm của bạn" />
+                            <input type="text" name='firstName' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập họ và tên đệm của bạn" />
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Tên</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <input type="text" className="w-[90%] border-b-2 px-2" placeholder="Nhập tên của bạn" />
+                            <input type="text" name='lastName' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập tên của bạn" />
                         </div>
                         <div className="col-span-1 text-start pl-6 my-6">
                             <label htmlFor="">Giới tính</label>
                         </div>
                         <div className="col-span-2 my-6 flex justify-start  pl-6 gap-5">
-                            <label htmlFor=""><input type="radio" name="gender" value="Nam" /> Nam</label>
-                            <label htmlFor=""><input type="radio" name="gender" value="Nữ" /> Nữ</label>
+                            <label htmlFor=""><input type="radio" name='gender' onChange={handleInputChange} value="Nam" /> Nam</label>
+                            <label htmlFor=""><input type="radio" name='gender' onChange={handleInputChange} value="Nữ" /> Nữ</label>
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Số điện thoại</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <input type="phone" className="w-[90%] border-b-2 px-2" placeholder="Nhập số điện thoại của bạn" />
+                            <input type="phone" name='phone' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập số điện thoại của bạn" />
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Địa chỉ email</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <input type="email" className="w-[90%] border-b-2 px-2" placeholder="Nhập địa chỉ email của bạn" />
+                            <input type="email" name='email' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập địa chỉ email của bạn" />
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Thành phố / Tỉnh</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <Select></Select>
+                            <Select onSelect={handleSelectCity}></Select>
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Quận / Huyện</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <Select></Select>
+                            <Select onSelect={handleSelectDistrict}></Select>
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Phường / Xã</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <Select></Select>
+                            <Select onSelect={handleSelectWard}></Select>
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Địa chỉ</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <input type="text" className="w-[90%] border-b-2 px-2" placeholder="Nhập địa chỉ của bạn" />
+                            <input type="text" name='address' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập địa chỉ của bạn" />
                         </div>
 
 
@@ -82,7 +137,7 @@ export default function Contacts() {
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Quận / Huyện</label>
                         </div>
-                        <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
+                        {/* <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
                             <Select></Select>
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
@@ -108,10 +163,10 @@ export default function Contacts() {
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
                             <Select></Select>
-                        </div>
+                        </div> */}
 
                         <div className="col-span-3 w-full mt-10">
-                            <button className="border-2 border-blue-400 delay-75 w-[90%] py-2 rounded-xl text-blue-400 hover:text-white hover:bg-blue-400">Xác Nhận</button>
+                            <button onSubmit={handleSubmit} className="border-2 border-blue-400 delay-75 w-[90%] py-2 rounded-xl text-blue-400 hover:text-white hover:bg-blue-400">Xác Nhận</button>
                         </div>
                         <div className="col-span-3 flex justify-center my-4 gap-2">
                             <p>Liên hệ với chúng tôi qua số điện thoại</p>

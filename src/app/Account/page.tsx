@@ -1,10 +1,10 @@
 'use client'
 import { useState } from 'react';
-import AccountTab from '@/components/AccountTab';
-import ChangePasswordTab from '@/components/ChangePasswordTab';
-import UpdateAccountTab from '@/components/UpdateAccountTab';
-import DonationHistoryTab from '@/components/DonationHistoryTab';
-import SupportedHistoryTab from '@/components/SupportedHistoryTab';
+import AccountTab from '@/components/features/accountPage/AccountTab';
+import ChangePasswordTab from '@/components/features/accountPage/ChangePasswordTab';
+import UpdateAccountTab from '@/components/features/accountPage/UpdateAccountTab';
+import DonationHistoryTab from '@/components/features/accountPage/DonationHistoryTab';
+import SupportedHistoryTab from '@/components/features/accountPage/SupportedHistoryTab';
 
 export default function AccountPage() {
     const [activeTab, setActiveTab] = useState('profile'); // Default tab
@@ -46,7 +46,7 @@ export default function AccountPage() {
                                 alt="Profile"
                             />
                         </div>
-                        <p className="text-lg font-medium">Trần Anh Đạt</p>
+                        <p className="text-lg font-medium">....</p>
                         <p>Chức vụ: </p>
                     </div>
                 </div>

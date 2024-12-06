@@ -41,7 +41,13 @@ export default function Header() {
                         Tình nguyện viên
                     </Link>
                     <Link
-                        href="/Contact"
+                        href="/Donation"
+                        className="font-bold text-black hover:text-[#E53634]  hover:border-[#E53634]"
+                    >
+                        Ủng hộ
+                    </Link>
+                    <Link
+                        href="/SupportRequest"
                         className="font-bold text-white bg-[#E53634] px-8 py-4 rounded-md hover:bg-blue-800"
                     >
                         Tôi cần giúp đỡ
@@ -108,13 +114,25 @@ export default function Header() {
                         Tin tức
                     </Link>
                     <Link
+                        href="/SearchPage"
+                        className="font-bold text-white hover:text-[#E53634]  hover:border-[#E53634]"
+                    >
+                        Tra cứu
+                    </Link>
+                    <Link
                         href="/Sign_Up"
                         className="font-bold text-white hover:text-[#E53634]  hover:border-[#E53634]"
                     >
                         Tình nguyện viên
                     </Link>
                     <Link
-                        href="/Contact"
+                        href="/Donation"
+                        className="font-bold text-white hover:text-[#E53634]  hover:border-[#E53634]"
+                    >
+                        Ủng hộ
+                    </Link>
+                    <Link
+                        href="/SupportRequest"
                         className="font-bold text-white bg-[#E53634] px-3 py-2 rounded-md"
                     >
                         Tôi cần giúp đỡ

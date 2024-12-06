@@ -1,6 +1,6 @@
 'use client'
 import { useState } from "react";
-import SelectInput from "@/components/app.selectninput";
+import SelectInput from "@/components/ui/app.selectninput";
 
 export default function Update() {
     const [formData, setFormData] = useState({
@@ -46,35 +46,75 @@ export default function Update() {
     return (
         <form onSubmit={handleSubmit} className="grid grid-cols-3 p-4">
             <div className="text-left col-span-1 my-2">
-                <label className="py-2 font-bold text-xl block">Mật khẩu hiện tại:</label>
-                <label className="py-2 font-bold text-xl block">Mật khẩu mới:</label>
-                <label className="py-2 font-bold text-xl block">Xác nhận:</label>
+                <label className="py-2 font-bold text-xl block">Họ và tên:</label>
+                <label className="py-2 font-bold text-xl block">Tuổi:</label>
+                <label className="py-2 font-bold text-xl block">Giới tính:</label>
+                <label className="py-2 font-bold text-xl block">Email:</label>
+                <label className="py-2 font-bold text-xl block">Thành phố:</label>
+                <label className="py-2 font-bold text-xl block">Quận:</label>
+                <label className="py-2 font-bold text-xl block">Phường:</label>
+                <label className="py-2 font-bold text-xl block">Địa chỉ đầy đủ:</label>
             </div>
             <div className="text-left col-span-2 my-2">
                 <input
-                    type="password"
+                    type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
                     className="w-full border px-2 py-2 mb-2"
                 />
                 <input
-                    type="password"
+                    type="number"
                     name="age"
                     value={formData.age}
                     onChange={handleInputChange}
                     className="w-full border px-2 py-2 mb-2"
                 />
-
+                <div className="mb-2">
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="Male"
+                            checked={formData.gender === "Male"}
+                            onChange={handleInputChange}
+                        />{" "}
+                        Nam
+                    </label>
+                    <label className="ml-4">
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="Female"
+                            checked={formData.gender === "Female"}
+                            onChange={handleInputChange}
+                        />{" "}
+                        Nữ
+                    </label>
+                </div>
                 <input
                     type="email"
-                    name="password"
+                    name="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     className="w-full border px-2 py-2 mb-2"
                 />
-
-
+                <div className="py-2 w-full border px-2 py-2 mb-2">
+                    <SelectInput />
+                </div>
+                <div className="py-2 w-full border px-2 py-2 mb-2">
+                    <SelectInput />
+                </div>
+                <div className="py-2 w-full border px-2 py-2 mb-2">
+                    <SelectInput />
+                </div>
+                <input
+                    type="text"
+                    name="fullAddress"
+                    value={formData.fullAddress}
+                    onChange={handleInputChange}
+                    className="w-full border px-2 py-2 mb-2"
+                />
             </div>
             <div className="col-span-3 text-center">
                 <button

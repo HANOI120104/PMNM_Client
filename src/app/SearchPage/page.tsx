@@ -1,8 +1,15 @@
 'use client';
+import useSWR from 'swr';
 import { useState } from 'react';
 
-export default function Register() {
+// Fetcher function for SWR
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+export default function SearchPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // Use SWR to fetch data
+    const { data, error, isLoading } = useSWR('http://localhost:8005/api/donations', fetcher);
 
     const handleDetailClick = () => {
         setIsModalOpen(true);
@@ -11,6 +18,14 @@ export default function Register() {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Failed to load data</div>;
+    }
 
     return (
         <div
@@ -21,7 +36,6 @@ export default function Register() {
                 backgroundPosition: 'center',
             }}
         >
-
             <div className="container mx-auto py-10 px-4">
                 {/* Search Bar */}
                 <div className="flex flex-wrap items-center my-6">
@@ -67,20 +81,29 @@ export default function Register() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="text-center">
-                                <td className="p-2 border border-gray-300">1</td>
-                                <td className="p-2 border border-gray-300">Tiền</td>
-                                <td className="p-2 border border-gray-300">100.000</td>
-                                <td className="p-2 border border-gray-300 text-green-500">Đã nhận</td>
-                                <td className="p-2 border border-gray-300">
-                                    <button
-                                        className="text-blue-500 underline"
-                                        onClick={handleDetailClick}
+                            {data?.map((donation: any) => (
+                                <tr key={donation.id} className="text-center">
+                                    <td className="p-2 border border-gray-300">{donation.id}</td>
+                                    <td className="p-2 border border-gray-300">{donation.paymentMethod}</td>
+                                    <td className="p-2 border border-gray-300">{donation.amount}</td>
+                                    <td
+                                        className={`p-2 border border-gray-300 ${donation.status === 'Pending'
+                                                ? 'text-yellow-500'
+                                                : 'text-green-500'
+                                            }`}
                                     >
-                                        Xem chi tiết
-                                    </button>
-                                </td>
-                            </tr>
+                                        {donation.status}
+                                    </td>
+                                    <td className="p-2 border border-gray-300">
+                                        <button
+                                            className="text-blue-500 underline"
+                                            onClick={handleDetailClick}
+                                        >
+                                            Xem chi tiết
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -97,68 +120,7 @@ export default function Register() {
                             </button>
                             <form className="container mx-auto text-center">
                                 <h2 className="my-4 text-4xl font-bold">Dành cho người cần cứu nạn</h2>
-                                <div className="container md:w-[50%] sm:w-[70%] mx-auto border-2 rounded-lg py-4 grid grid-cols-3">
-                                    <div className="col-span-3">
-                                        <p className="text-xl font-semibold">Thông tin liên hệ</p>
-                                    </div>
-                                    {/* Form Fields */}
-                                    <div className="col-span-1 w-full my-6 flex justify-start items-start pl-6">
-                                        <label htmlFor="firstName" className="mr-4">
-                                            Họ và tên đệm
-                                        </label>
-                                    </div>
-                                    <div className="col-span-2 w-full my-6 flex justify-start items-start">
-                                        <input
-                                            type="text"
-                                            className="w-[90%] border-b-2 px-2"
-                                            placeholder="Nhập họ và tên đệm của bạn"
-                                        />
-                                    </div>
-                                    <div className="col-span-1 w-full my-6 flex justify-start items-start pl-6">
-                                        <label htmlFor="firstName" className="mr-4">
-                                            Họ và tên đệm
-                                        </label>
-                                    </div>
-                                    <div className="col-span-2 w-full my-6 flex justify-start items-start">
-                                        <input
-                                            type="text"
-                                            className="w-[90%] border-b-2 px-2"
-                                            placeholder="Nhập họ và tên đệm của bạn"
-                                        />
-                                    </div>
-                                    <div className="col-span-1 w-full my-6 flex justify-start items-start pl-6">
-                                        <label htmlFor="firstName" className="mr-4">
-                                            Họ và tên đệm
-                                        </label>
-                                    </div>
-                                    <div className="col-span-2 w-full my-6 flex justify-start items-start">
-                                        <input
-                                            type="text"
-                                            className="w-[90%] border-b-2 px-2"
-                                            placeholder="Nhập họ và tên đệm của bạn"
-                                        />
-                                    </div>
-                                    <div className="col-span-1 w-full my-6 flex justify-start items-start pl-6">
-                                        <label htmlFor="firstName" className="mr-4">
-                                            Họ và tên đệm
-                                        </label>
-                                    </div>
-                                    <div className="col-span-2 w-full my-6 flex justify-start items-start">
-                                        <input
-                                            type="text"
-                                            className="w-[90%] border-b-2 px-2"
-                                            placeholder="Nhập họ và tên đệm của bạn"
-                                        />
-                                    </div>
-
-                                    {/* Add other fields here */}
-                                    <div className="col-span-3 mt-4 py-4 flex justify-center">
-                                        <button className="border-2 border-blue-400 delay-75 w-[90%] py-2 rounded-xl text-blue-400 hover:text-white hover:bg-blue-400">
-                                            Quay lại
-                                        </button>
-                                    </div>
-
-                                </div>
+                                {/* Form Content */}
                             </form>
                         </div>
                     </div>

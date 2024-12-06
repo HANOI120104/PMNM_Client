@@ -1,13 +1,22 @@
 'use client'
-import Select from '@/components/app.selectninput'
+import Select from '@/components/ui/app.selectninput'
 import fetchApi from '@/utils/fetchApi';
 import { useState } from 'react';
 
 export default function Register() {
     const [formData, setFormData] = useState({
         username: '',
-        name: '',
+        password: '',
+        confirmPass: '',
+        firstName: '',
+        lastName: '',
+        gender: '',
+        phone: '',
         email: '',
+        city: '',
+        district: '',
+        ward: '',
+        address: ''
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,13 +31,34 @@ export default function Register() {
         e.preventDefault();
 
         try {
-            const response = await fetchApi('/api/register', 'POST', formData);
+            const response = await fetchApi('http://localhost:8000/api/users/register', 'POST', formData);
+
 
             console.log('Register success:', response);
 
         } catch (error) {
             console.error('Register failed:', error);
         }
+    };
+
+    const handleSelectCity = (value: string) => {
+        setFormData({
+            ...formData,
+            city: value,  // Lưu giá trị thành phố từ dropdown
+        });
+    };
+
+    const handleSelectDistrict = (value: string) => {
+        setFormData({
+            ...formData,
+            district: value,  // Lưu giá trị thành phố từ dropdown
+        });
+    };
+    const handleSelectWard = (value: string) => {
+        setFormData({
+            ...formData,
+            ward: value,  // Lưu giá trị thành phố từ dropdown
+        });
     };
 
     return (
@@ -57,14 +87,14 @@ export default function Register() {
                             <label htmlFor="password" className="mr-4">Mật khẩu</label>
                         </div>
                         <div className="col-span-2 flex justify-start items-center">
-                            <input type="password" id="password" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập mật khẩu của bạn" />
+                            <input type="password" name="password" onChange={handleInputChange} id="password" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập mật khẩu của bạn" />
                         </div>
 
                         <div className="col-span-1 flex justify-start items-center pl-6">
                             <label htmlFor="confirm-password" className="mr-4">Xác nhận mật khẩu</label>
                         </div>
                         <div className="col-span-2 flex justify-start items-center">
-                            <input type="password" id="confirm-password" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập mật khẩu xác nhận của bạn" />
+                            <input type="password" name="confirmPass" onChange={handleInputChange} id="confirm-password" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập mật khẩu xác nhận của bạn" />
                         </div>
 
                         <div className="col-span-3 mt-4 py-4 flex justify-center">
@@ -75,75 +105,75 @@ export default function Register() {
                             <label htmlFor="full-name" className="mr-4">Họ và tên đệm</label>
                         </div>
                         <div className="col-span-2 flex justify-start items-center">
-                            <input type="text" id="full-name" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập họ và tên đệm của bạn" />
+                            <input type="text" name="firstName" onChange={handleInputChange} id="full-name" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập họ và tên đệm của bạn" />
                         </div>
 
                         <div className="col-span-1 flex justify-start items-center pl-6">
                             <label htmlFor="name" className="mr-4">Tên</label>
                         </div>
                         <div className="col-span-2 flex justify-start items-center">
-                            <input type="text" id="name" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập tên của bạn" />
+                            <input type="text" name="lastName" onChange={handleInputChange} id="name" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập tên của bạn" />
                         </div>
 
                         <div className="col-span-1 text-start pl-6">
                             <label htmlFor="gender">Giới tính</label>
                         </div>
                         <div className="col-span-2 flex justify-start items-center pl-6 gap-5">
-                            <label htmlFor="male"><input type="radio" name="gender" value="Nam" /> Nam</label>
-                            <label htmlFor="female"><input type="radio" name="gender" value="Nữ" /> Nữ</label>
+                            <label htmlFor="male"><input type="radio" name="gender" onChange={handleInputChange} value="man" /> Nam</label>
+                            <label htmlFor="female"><input type="radio" name="gender" onChange={handleInputChange} value="women" /> Nữ</label>
                         </div>
 
                         <div className="col-span-1 flex justify-start items-center pl-6">
                             <label htmlFor="phone" className="mr-4">Số điện thoại</label>
                         </div>
                         <div className="col-span-2 flex justify-start items-center">
-                            <input type="phone" id="phone" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập số điện thoại của bạn" />
+                            <input type="phone" name="phone" onChange={handleInputChange} id="phone" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập số điện thoại của bạn" />
                         </div>
 
                         <div className="col-span-1 flex justify-start items-center pl-6">
                             <label htmlFor="email" className="mr-4">Địa chỉ email</label>
                         </div>
                         <div className="col-span-2 flex justify-start items-center">
-                            <input type="email" id="email" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập địa chỉ email của bạn" />
+                            <input type="email" name="email" onChange={handleInputChange} id="email" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập địa chỉ email của bạn" />
                         </div>
 
                         <div className="col-span-1 flex justify-start items-center pl-6">
                             <label htmlFor="city" className="mr-4">Thành phố / Tỉnh</label>
                         </div>
                         <div className="col-span-2 flex justify-start items-center">
-                            <Select ></Select>
+                            <Select onSelect={handleSelectCity}></Select>
                         </div>
 
                         <div className="col-span-1 flex justify-start items-center pl-6">
                             <label htmlFor="district" className="mr-4">Quận / Huyện</label>
                         </div>
                         <div className="col-span-2 flex justify-start items-center">
-                            <Select ></Select>
+                            <Select onSelect={handleSelectDistrict}></Select>
                         </div>
 
                         <div className="col-span-1 flex justify-start items-center pl-6">
                             <label htmlFor="ward" className="mr-4">Phường / Xã</label>
                         </div>
                         <div className="col-span-2 flex justify-start items-center">
-                            <Select ></Select>
+                            <Select onSelect={handleSelectWard}></Select>
                         </div>
 
                         <div className="col-span-1 flex justify-start items-center pl-6">
                             <label htmlFor="address" className="mr-4">Địa chỉ</label>
                         </div>
                         <div className="col-span-2 flex justify-start items-center">
-                            <input type="text" id="address" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập địa chỉ của bạn" />
+                            <input type="text" name="address" onChange={handleInputChange} id="address" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập địa chỉ của bạn" />
                         </div>
 
                         <div className="col-span-3 w-full mt-10">
-                            <button className="w-full sm:w-[90%] py-2 border-2 border-blue-400 text-blue-400 rounded-xl hover:text-white hover:bg-blue-400 transition duration-300" onClick={handleSubmit}>
+                            <button onSubmit={handleSubmit} className="w-full sm:w-[90%] py-2 border-2 border-blue-400 text-blue-400 rounded-xl hover:text-white hover:bg-blue-400 transition duration-300" onClick={handleSubmit}>
                                 Đăng ký
                             </button>
                         </div>
 
                         <div className="col-span-3 flex justify-center my-4 gap-2">
                             <p>Bạn đã có tài khoản ?</p>
-                            <a href="" className="font-bold text-blue-400">Đăng nhập</a>
+                            <a href="/Sign_In" className="font-bold text-blue-400">Đăng nhập</a>
                         </div>
                     </div>
                 </form>
