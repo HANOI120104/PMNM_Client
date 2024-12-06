@@ -4,7 +4,6 @@ Bắt đầu
 Trước tiên, chạy máy chủ phát triển:
 
 bash
-Sao chép mã
 npm run dev
 # hoặc
 yarn dev
