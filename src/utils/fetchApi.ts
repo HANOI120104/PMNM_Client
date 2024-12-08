@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "xxxxx";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "";
 
 async function fetchApi(url: string, method: string = 'GET', body: any = null, auth: boolean = false) {
     const headers: Record<string, string> = {
@@ -6,7 +6,7 @@ async function fetchApi(url: string, method: string = 'GET', body: any = null, a
     };
 
     if (auth) {
-        const token = localStorage.getItem('token'); 
+        const token = localStorage.getItem('token');
         if (token) {
             headers['Authorization'] = `Bearer ${token}`;
         } else {

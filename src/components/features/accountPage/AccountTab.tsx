@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 export default function AccountTab() {
     const [userData, setUserData] = useState<any>(null); // State để lưu dữ liệu người dùng
@@ -14,7 +15,17 @@ export default function AccountTab() {
         // Gọi API để lấy dữ liệu người dùng
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:8000/api/users/"); // Thay URL bằng API của bạn
+                const getCookie = Cookies.get('access_token')
+                // console.log(getCookie)
+                const response = await fetch("http://localhost:8000/api/users/6754be61ac4a078039e53353",
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            "Authorization": `Bearer ${getCookie}`
+                        }
+                    }
+                ); // Thay URL bằng API của bạn
                 if (!response.ok) {
                     throw new Error("Failed to fetch data");
                 }

@@ -55,9 +55,6 @@ export default function Donation() {
                                 <option value="goods">Vật tư</option>
                             </select>
                         </div>
-                        <div className="col-span-3 w-full mt-10">
-                            <button className="border-2 border-blue-400 delay-75 w-[90%] py-2 rounded-xl text-blue-400 hover:text-white hover:bg-blue-400">Xác nhận</button>
-                        </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Số lượng</label>
                         </div>

@@ -8,6 +8,8 @@ import SupportedHistoryTab from '@/components/features/accountPage/SupportedHist
 
 export default function AccountPage() {
     const [activeTab, setActiveTab] = useState('profile'); // Default tab
+    const [check, setCheck] = useState(false);
+    const attendance = () => { }
 
     // Function to render the active tab content
     const renderTabContent = () => {
@@ -42,12 +44,13 @@ export default function AccountPage() {
                         <div className="flex justify-center">
                             <img
                                 className="w-24 h-24 object-cover border-2 rounded-full my-2"
-                                src="/img/avatar.jpg"
+                                src="/img/icons8-user-100.png"
                                 alt="Profile"
                             />
                         </div>
-                        <p className="text-lg font-medium">....</p>
-                        <p>Chức vụ: </p>
+                        <p className="text-lg font-medium">Phạm Nhật Anh</p>
+                        <p>Chức vụ: Tình nguyện viên</p>
+                        <button className="border-rose-600 border-2 rounded-lg px-4 py-2 my-2 hover:bg-red-600 hover:text-white">Điểm danh</button>
                     </div>
                 </div>
                 <div className="col-span-4">

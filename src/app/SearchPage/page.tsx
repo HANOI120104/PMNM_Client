@@ -1,6 +1,7 @@
 'use client';
 import useSWR from 'swr';
 import { useState } from 'react';
+import Link from 'next/link';
 
 // Fetcher function for SWR
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -88,19 +89,14 @@ export default function SearchPage() {
                                     <td className="p-2 border border-gray-300">{donation.amount}</td>
                                     <td
                                         className={`p-2 border border-gray-300 ${donation.status === 'Pending'
-                                                ? 'text-yellow-500'
-                                                : 'text-green-500'
+                                            ? 'text-yellow-500'
+                                            : 'text-green-500'
                                             }`}
                                     >
                                         {donation.status}
                                     </td>
                                     <td className="p-2 border border-gray-300">
-                                        <button
-                                            className="text-blue-500 underline"
-                                            onClick={handleDetailClick}
-                                        >
-                                            Xem chi tiết
-                                        </button>
+                                        <Link href={'DonationDetail'}></Link>
                                     </td>
                                 </tr>
                             ))}
@@ -108,23 +104,7 @@ export default function SearchPage() {
                     </table>
                 </div>
 
-                {/* Modal */}
-                {isModalOpen && (
-                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                        <div className="bg-white rounded-lg w-full max-w-4xl p-6">
-                            <button
-                                className="absolute top-4 right-4 text-gray-500 hover:text-black"
-                                onClick={closeModal}
-                            >
-                                ×
-                            </button>
-                            <form className="container mx-auto text-center">
-                                <h2 className="my-4 text-4xl font-bold">Dành cho người cần cứu nạn</h2>
-                                {/* Form Content */}
-                            </form>
-                        </div>
-                    </div>
-                )}
+
             </div>
         </div>
     );

@@ -1,13 +1,26 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const handleLogin = () => setIsLoggedIn(true); // Xử lý đăng nhập
-    const handleLogout = () => setIsLoggedIn(false); // Xử lý đăng xuất
+
+
+    // Kiểm tra trạng thái đăng nhập khi component render
+    useEffect(() => {
+        const token = Cookies.get('access_token');
+        setIsLoggedIn(!!token); // true nếu token tồn tại
+    }, []);
+
+    // Xử lý đăng xuất
+    const handleLogout = () => {
+        Cookies.remove('access_token'); // Xóa token trong cookie
+        setIsLoggedIn(false); // Đặt trạng thái chưa đăng nhập
+        alert('Bạn đã đăng xuất!');
+    };
 
     return (
         <header className="fixed top-0 z-50 w-full bg-blue-400 border-b-2 py-4">
@@ -22,12 +35,7 @@ export default function Header() {
 
                 {/* Menu cho laptop */}
                 <nav className="hidden md:flex gap-10 items-center">
-                    <Link
-                        href="/About"
-                        className="font-bold text-black hover:text-[#E53634]  hover:border-[#E53634]"
-                    >
-                        Tin tức
-                    </Link>
+
                     <Link
                         href="/SearchPage"
                         className="font-bold text-black hover:text-[#E53634]  hover:border-[#E53634]"

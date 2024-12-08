@@ -11,6 +11,7 @@ export default function Register() {
         firstName: '',
         lastName: '',
         gender: '',
+        roles: 'user',
         phone: '',
         email: '',
         city: '',
@@ -31,11 +32,20 @@ export default function Register() {
         e.preventDefault();
 
         try {
-            const response = await fetchApi('http://localhost:8000/api/users/register', 'POST', formData);
+            const response = await fetch('http://localhost:8000/api/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
 
-            console.log('Register success:', response);
-
+            const data = await response.json();
+            console.log('Register success:', data);
         } catch (error) {
             console.error('Register failed:', error);
         }
@@ -137,9 +147,9 @@ export default function Register() {
                             <input type="email" name="email" onChange={handleInputChange} id="email" className="w-full sm:w-[90%] border-b-2 px-2 py-2" placeholder="Nhập địa chỉ email của bạn" />
                         </div>
 
-                        <div className="col-span-1 flex justify-start items-center pl-6">
+                        {/* <div className="col-span-1 flex justify-start items-center pl-6">
                             <label htmlFor="city" className="mr-4">Thành phố / Tỉnh</label>
-                        </div>
+                        </div> */}
                         {/* <div className="col-span-2 flex justify-start items-center">
                             <Select onSelect={handleSelectCity}></Select>
                         </div>

@@ -2,18 +2,27 @@
 import Select from '@/components/ui/app.selectninput'
 import fetchApi from '@/utils/fetchApi';
 import { useState } from 'react';
+import Cookies from "js-cookie";
+import Location from '@/components/features/supportedRequest/loaction'
 
 export default function SupportReport() {
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        gender: '',
-        phone: '',
-        email: '',
-        city: '',
-        district: '',
-        ward: '',
-        address: ''
+        city: "string",
+        description: "string",
+        detailAddress: "string",
+        district: "string",
+        email: "string",
+        fullname: "string",
+        location: {
+            lat: 0,
+            lng: 0
+        },
+        phone: "string",
+        point: 0,
+        quantity: 0,
+        status: "Pending",
+        supportRequestTypeId: "string",
+        ward: "string"
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,13 +33,12 @@ export default function SupportReport() {
         });
     };
 
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         try {
-            const response = await fetchApi('http://localhost:8000/api/supportRequests', 'POST', formData);
-
-
+            const response = await fetchApi('http://localhost:8006/api/supportRequests', 'POST', formData);
             console.log('Register success:', response);
 
         } catch (error) {
@@ -38,24 +46,41 @@ export default function SupportReport() {
         }
     };
 
-    const handleSelectCity = (value: string) => {
-        setFormData({
-            ...formData,
-            city: value,  // Lưu giá trị thành phố từ dropdown
-        });
-    };
+    const [coordinates, setCoordinates] = useState<string>('');  // Sử dụng useState để lưu trữ thông tin tọa độ
 
-    const handleSelectDistrict = (value: string) => {
-        setFormData({
-            ...formData,
-            district: value,  // Lưu giá trị thành phố từ dropdown
-        });
-    };
-    const handleSelectWard = (value: string) => {
-        setFormData({
-            ...formData,
-            ward: value,  // Lưu giá trị thành phố từ dropdown
-        });
+    const getCurrentCoordinates = () => {
+        // Kiểm tra nếu trình duyệt hỗ trợ Geolocation API
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position: GeolocationPosition) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    setCoordinates(`Latitude: ${lat}, Longitude: ${lon}`);
+                    console.log("Latitude:", lat);
+                    console.log("Longitude:", lon);
+                },
+                (error: GeolocationPositionError) => {
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            setCoordinates("Người dùng từ chối truy cập vị trí.");
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            setCoordinates("Thông tin vị trí không khả dụng.");
+                            break;
+                        case error.TIMEOUT:
+                            setCoordinates("Yêu cầu lấy vị trí bị hết thời gian.");
+                            break;
+                        default:
+                            setCoordinates("Đã xảy ra lỗi không xác định.");
+                            break;
+                    }
+                    console.error("Lỗi:", error.message);
+                }
+            );
+        } else {
+            setCoordinates("Trình duyệt không hỗ trợ Geolocation.");
+            console.error("Trình duyệt không hỗ trợ Geolocation API.");
+        }
     };
 
     return (
@@ -75,24 +100,12 @@ export default function SupportReport() {
                             <p className="text-xl font-semibold">Thông tin liên hệ</p>
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
-                            <label htmlFor="" className="mr-4">Họ và tên đệm</label>
+                            <label htmlFor="" className="mr-4">Họ và tên</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <input type="text" name='firstName' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập họ và tên đệm của bạn" />
+                            <input type="text" name='fullName' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập họ và tên của bạn" />
                         </div>
-                        <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
-                            <label htmlFor="" className="mr-4">Tên</label>
-                        </div>
-                        <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <input type="text" name='lastName' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập tên của bạn" />
-                        </div>
-                        <div className="col-span-1 text-start pl-6 my-6">
-                            <label htmlFor="">Giới tính</label>
-                        </div>
-                        <div className="col-span-2 my-6 flex justify-start  pl-6 gap-5">
-                            <label htmlFor=""><input type="radio" name='gender' onChange={handleInputChange} value="Nam" /> Nam</label>
-                            <label htmlFor=""><input type="radio" name='gender' onChange={handleInputChange} value="Nữ" /> Nữ</label>
-                        </div>
+
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Số điện thoại</label>
                         </div>
@@ -109,19 +122,19 @@ export default function SupportReport() {
                             <label htmlFor="" className="mr-4">Thành phố / Tỉnh</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <Select onSelect={handleSelectCity}></Select>
+                            <input type="text" name='city' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập thành phố bạn ở" />
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Quận / Huyện</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <Select onSelect={handleSelectDistrict}></Select>
+                            <input type="text" name='district' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập quận bạn đang ở" />
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Phường / Xã</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <Select onSelect={handleSelectWard}></Select>
+                            <input type="text" name='ward' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập phường bạn đang ở" />
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
                             <label htmlFor="" className="mr-4">Địa chỉ</label>
@@ -135,39 +148,30 @@ export default function SupportReport() {
                             <p className="text-xl w-full font-semibold border-t-2 border-dashed pt-6">Thông tin trợ giúp</p>
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
-                            <label htmlFor="" className="mr-4">Quận / Huyện</label>
-                        </div>
-                        {/* <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <Select></Select>
-                        </div>
-                        <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
-                            <label htmlFor="" className="mr-4">Quận / Huyện</label>
+                            <label htmlFor="" className="mr-4">Loại cứu trợ</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <Select></Select>
+                            <input type="text" name='supportRequestTypeId' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập địa chỉ của bạn" />
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
-                            <label htmlFor="" className="mr-4">Quận / Huyện</label>
+                            <label htmlFor="" className="mr-4">Số lượng</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <Select></Select>
+                            <input type="text" name='quantity' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập địa chỉ của bạn" />
                         </div>
                         <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
-                            <label htmlFor="" className="mr-4">Quận / Huyện</label>
+                            <label htmlFor="" className="mr-4">Mô tả</label>
                         </div>
                         <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <Select></Select>
+                            <input type="text" name='description' onChange={handleInputChange} className="w-[90%] border-b-2 px-2" placeholder="Nhập địa chỉ của bạn" />
                         </div>
-                        <div className="col-span-1 w-[100%] my-6 flex  justify-start items-start pl-6">
-                            <label htmlFor="" className="mr-4">Quận / Huyện</label>
+                        <div className="col-span-3 w-full mt-10">
+                            <button onSubmit={getCurrentCoordinates} className="border-2 border-blue-400 delay-75 w-[90%] py-2 rounded-xl text-blue-400 hover:text-white hover:bg-blue-400">Lấy toạn độ</button>
                         </div>
-                        <div className="col-span-2 w-[100%] my-6 flex  justify-start items-start">
-                            <Select></Select>
-                        </div> */}
-
                         <div className="col-span-3 w-full mt-10">
                             <button onSubmit={handleSubmit} className="border-2 border-blue-400 delay-75 w-[90%] py-2 rounded-xl text-blue-400 hover:text-white hover:bg-blue-400">Xác Nhận</button>
                         </div>
+                        <Location></Location>
                         <div className="col-span-3 flex justify-center my-4 gap-2">
                             <p>Liên hệ với chúng tôi qua số điện thoại</p>
                             <a href="" className="font-bold text-blue-400">0123456789</a>

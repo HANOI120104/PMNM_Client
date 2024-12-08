@@ -1,5 +1,7 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import '@n8n/chat/style.css';
+import { createChat } from '@n8n/chat';
 
 export default function Home() {
   const slides = [
@@ -17,6 +19,16 @@ export default function Home() {
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   };
+  useEffect(() => {
+    createChat({
+      webhookUrl: 'https://nguyentu123.app.n8n.cloud/webhook/97a196f3-6d21-4df6-bbcb-ba0dbe7376ae/chat',
+      initialMessages: [
+        'Hi there! 👋',
+        'My name is Nathan. How can I assist you today?',
+        'Vui long nhap so dien thoai de bat dau chat'
+      ],
+    });
+  }, []);
 
   return (
     <div className="relative z-0 w-full overflow-hidden border-b-2 mb-10">
@@ -43,9 +55,6 @@ export default function Home() {
         className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black/50 text-white text-xl p-2 md:p-4 rounded-full">
         &#8594;
       </button>
-      <div className="container mx-auto mt-20">
-        Nội dung trang chủ
-      </div>
     </div>
   );
 }

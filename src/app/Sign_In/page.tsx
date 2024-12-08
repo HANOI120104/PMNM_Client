@@ -3,12 +3,15 @@
 import React, { useState } from 'react';
 import InputField from '@/components/ui/InputField';
 import ForgetPassword from '@/components/features/Authentication/ForgetPasswordModal';
+import { useRouter } from 'next/navigation'; // Import useRouter
+import Cookies from "js-cookie";
 
 export default function Login() {
     const [formData, setFormData] = useState({
         username: '',
         password: '',
     });
+    const router = useRouter(); // Initialize the router
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -19,7 +22,7 @@ export default function Login() {
         e.preventDefault();
 
         try {
-            const response = await fetch('/api/auth/login', {
+            const response = await fetch('http://localhost:8000/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
@@ -30,14 +33,34 @@ export default function Login() {
             if (response.ok) {
                 alert('Đăng nhập thành công!');
                 console.log('User Data:', result);
-            } else {
-                alert(result.message || 'Đăng nhập thất bại!');
+
+                if (result.accessToken) {
+                    Cookies.set('id', result.id, {
+                        expires: 1 / 24, // Expires in 1 hour
+                        secure: true, // Ensures the cookie is only sent over HTTPS
+                        sameSite: "strict", // Prevents CSRF attacks
+                    })
+                    Cookies.set("access_token", result.accessToken, {
+                        expires: 1 / 24, // Expires in 1 hour
+                        secure: true, // Ensures the cookie is only sent over HTTPS
+                        sameSite: "strict", // Prevents CSRF attacks
+                    });
+                    router.push("/");
+                    // // Store token securely (example: sessionStorage)
+                    // sessionStorage.setItem('authToken', result.token);
+
+                    router.push('/Account'); // Redirect to the homepage
+                } else {
+                    alert(result.message || 'Đăng nhập thất bại!');
+                }
+
             }
         } catch (error) {
             console.error('Error logging in:', error);
             alert('Đã xảy ra lỗi. Vui lòng thử lại!');
         }
     };
+
 
     return (
         <div
