@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) ATA_TLU.
+ *
+ * This source code is licensed under the GPL V3 license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "";
 
 async function fetchApi(url: string, method: string = 'GET', body: any = null, auth: boolean = false) {
