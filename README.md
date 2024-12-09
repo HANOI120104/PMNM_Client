@@ -26,14 +26,22 @@ Dự án được thực hiện trong cuộc thi [Phần Mềm Nguồn Mở-Olym
 Ứng dụng "Hỗ Trợ Nhân Đạo Thông Minh" (Smart Aid) hướng tới việc xây dựng một nền tảng công nghệ hiện đại để quản lý và tối ưu hóa các hoạt động hỗ trợ nhân đạo trong tình huống khẩn cấp. Ứng dụng sẽ giúp kết nối các bên liên quan (chính phủ, tổ chức phi chính phủ, nhà tài trợ, và người dân) để phân phối lương thực, vật tư y tế, và các nguồn lực một cách nhanh chóng, minh bạch và hiệu quả.
 
 
-
-
-
 ## Bắt đầu
-Đây là một dự án Next.js được khởi tạo với create-next-app.
+Trước hết, hãy clone dự án về máy tính của bạn:
 
+```bash
+git clone https://github.com/HANOI120104/PMNM_Client
+```
 
-Trước tiên, chạy máy chủ phát triển:
+cd vào thư mục:
+```bash
+cd PMNM_Client
+```
+Chạy lệnh cài các thư viện liên quan:
+```bash
+npm install
+```
+chạy máy chủ phát triển
 
 ```bash
 npm run dev
@@ -51,31 +59,6 @@ hoặc
 ### bun dev
 ```
 Mở http://localhost:3000 trên trình duyệt của bạn để xem kết quả.
-
-Bạn có thể bắt đầu chỉnh sửa trang bằng cách thay đổi tệp app/page.tsx. Trang sẽ tự động cập nhật khi bạn chỉnh sửa tệp.
-
-Dự án này sử dụng next/font để tự động tối ưu hóa và tải Inter, một font chữ tùy chỉnh từ Google Fonts.
-
-#Tìm hiểu thêm
-Để tìm hiểu thêm về Next.js, hãy xem các tài liệu sau:
-
-Tài liệu Next.js - tìm hiểu về các tính năng và API của Next.js.
-Học Next.js - một hướng dẫn tương tác về Next.js.
-Bạn có thể xem kho lưu trữ GitHub của Next.js - mọi ý kiến đóng góp của bạn đều được chào đón!
-
-#Triển khai trên Vercel
-Cách dễ nhất để triển khai ứng dụng Next.js của bạn là sử dụng Nền tảng Vercel, được tạo bởi những người phát triển Next.js.
-
-Xem tài liệu triển khai Next.js để biết thêm chi tiết.
-
-"# PMNM_Client"
-
-# Ứng dụng API - Amplication 
-## Amplication - Low Code Platform
-Toàn bộ dự án được genrater code bởi Low code Amplication
-
-Amplication là một nền tảng low-code giúp các nhà phát triển tạo ứng dụng nhanh chóng mà không cần phải viết quá nhiều mã. Nó cho phép bạn tạo API, cơ sở dữ liệu, và giao diện người dùng một cách tự động.
-
 
 ### Chức Năng Chính
 
@@ -100,10 +83,10 @@ Project tập trung vào các chức năng chính như sau:
 
 ## Đóng góp cho dự án
 
-<a href="https://github.com/pmnm2024/smart_tlu/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=%F0%9F%90%9B+Bug+Report%3A+">Bug Report ⚠️
+<a href="https://github.com/HANOI120104/PMNM_Client/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=%F0%9F%90%9B+Bug+Report%3A+">Bug Report ⚠️
 </a>
 
-<a href="https://github.com/pmnm2024/smart_tlu/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=RequestFeature:">Request Feature 👩‍💻</a>
+<a href="https://github.com/HANOI120104/PMNM_Client/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=RequestFeature:">Request Feature 👩‍💻</a>
 
 Nếu bạn muốn đóng góp cho dự án, hãy đọc [CONTRIBUTING.md](.github/CONTRIBUTING.md) để tìm hiểu thêm chi tiết.
 
