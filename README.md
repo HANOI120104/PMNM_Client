@@ -42,3 +42,24 @@ Nếu bạn muốn đóng góp cho dự án, hãy đọc [CONTRIBUTING.md](.gith
 Chúng tôi rất trân trọng mọi đóng góp từ các bạn. Đừng ngần ngại tạo pull request và gửi đến dự án.
 ## 📝 License
 This project is licensed under the  [Apache 2.0](./LICENSE) license.
+
+## Một số giao diện mẫu
+![image](https://github.com/user-attachments/assets/83813c57-0248-433a-b666-be80fc806999)
+![image](https://github.com/user-attachments/assets/d31f5c9e-2fac-4f79-9dda-9fd78f6d7349)
+![image](https://github.com/user-attachments/assets/37fe531e-c279-4ee1-ac5f-4e01068d0422)
+![image](https://github.com/user-attachments/assets/e9681b89-5356-487d-84fd-b9abed23887a)
+![image](https://github.com/user-attachments/assets/5704cad7-55c0-429f-8b1b-8cf5fa27fbf8)
+![image](https://github.com/user-attachments/assets/14d369d8-9f9f-4564-8b4c-18f5c39ebfad)
+![image](https://github.com/user-attachments/assets/bad849fb-c259-44ff-a003-b44c9bead8f2)
+![image](https://github.com/user-attachments/assets/acc84b3e-3a06-4857-b7ce-1c62221645aa)
+![image](https://github.com/user-attachments/assets/ebd22c23-d8c2-430d-9b4b-c4726e1fd21f)
+
+
+
+
+
+
+
+
+
+
