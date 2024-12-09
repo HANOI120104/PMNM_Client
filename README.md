@@ -1,6 +1,23 @@
+[![Github license](https://img.shields.io/github/license/pmnm2024/smart_tlu 'Github license')](https://github.com/pmnm2024/smart_tlu/blob/main/LICENSE)
+[![Open issues](https://img.shields.io/github/issues/pmnm2024/smart_tlu 'Open issues')](https://github.com/pmnm2024/smart_tlu/issues)
+[![Open Pull Requests](https://img.shields.io/github/issues-pr/pmnm2024/smart_tlu 'Open Pull Requests')](https://github.com/pmnm2024/smart_tlu/pulls)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/pmnm2024/smart_tlu 'Commit activity')](https://github.com/pmnm2024/smart_tlu/graphs/commit-activity)
+[![GitHub contributors](https://img.shields.io/github/contributors/pmnm2024/smart_tlu 'Github contributors')](https://github.com/pmnm2024/smart_tlu/graphs/contributors)
+
+# SMART_TLU [Giao diện]
+
+## Giới Thiệu
+
+Ứng dụng "Hỗ Trợ Nhân Đạo Thông Minh" (Smart Aid) hướng tới việc xây dựng một nền tảng công nghệ hiện đại để quản lý và tối ưu hóa các hoạt động hỗ trợ nhân đạo trong tình huống khẩn cấp. Ứng dụng sẽ giúp kết nối các bên liên quan (chính phủ, tổ chức phi chính phủ, nhà tài trợ, và người dân) để phân phối lương thực, vật tư y tế, và các nguồn lực một cách nhanh chóng, minh bạch và hiệu quả.
+
+
+
+
+
+## Bắt đầu
 Đây là một dự án Next.js được khởi tạo với create-next-app.
 
-#Bắt đầu
+
 Trước tiên, chạy máy chủ phát triển:
 
 ```bash
@@ -8,15 +25,15 @@ npm run dev
 ```
 hoặc
 ```bash
-###yarn dev
+### yarn dev
 ```
 hoặc
 ```bash
-###pnpm dev
+### pnpm dev
 ```
 hoặc
 ```bash
-bun dev
+### bun dev
 ```
 Mở http://localhost:3000 trên trình duyệt của bạn để xem kết quả.
 
@@ -37,20 +54,25 @@ Cách dễ nhất để triển khai ứng dụng Next.js của bạn là sử d
 Xem tài liệu triển khai Next.js để biết thêm chi tiết.
 
 "# PMNM_Client"
-## 🙌 Đóng góp cho dự án
 
-<a href="https://github.com/pmnm2024/smart_tlu/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=%F0%9F%90%9B+Bug+Report%3A+">Bug Report ⚠️
-</a>
+# Ứng dụng API - Amplication 
+## Amplication - Low Code Platform
+Toàn bộ dự án được genrater code bởi Low code Amplication
 
-<a href="https://github.com/pmnm2024/smart_tlu/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=RequestFeature:">Request Feature 👩‍💻</a>
+Amplication là một nền tảng low-code giúp các nhà phát triển tạo ứng dụng nhanh chóng mà không cần phải viết quá nhiều mã. Nó cho phép bạn tạo API, cơ sở dữ liệu, và giao diện người dùng một cách tự động.
 
-Nếu bạn muốn đóng góp cho dự án, hãy đọc [CONTRIBUTING.md](.github/CONTRIBUTING.md) để tìm hiểu thêm chi tiết.
 
-Chúng tôi rất trân trọng mọi đóng góp từ các bạn. Đừng ngần ngại tạo pull request và gửi đến dự án.
-## 📝 License
-This project is licensed under the  [Apache 2.0](./LICENSE) license.
+### Chức Năng Chính
 
-## Một số giao diện mẫu
+Project tập trung vào các chức năng chính như sau:
+
+-   Hệ thống đăng ký nhận hỗ trợ.
+-   Theo dõi nguồn lực và nhu cầu.
+-   Quản lý đóng góp từ cộng đồng.
+-   Báo cáo tình trạng thực địa.
+-   🤖 Chat bot để cho người dùng hỏi và phát hiện ra các tình trạng khẩn cấp.
+
+# Một số giao diện mẫu
 ![image](https://github.com/user-attachments/assets/83813c57-0248-433a-b666-be80fc806999)
 ![image](https://github.com/user-attachments/assets/d31f5c9e-2fac-4f79-9dda-9fd78f6d7349)
 ![image](https://github.com/user-attachments/assets/37fe531e-c279-4ee1-ac5f-4e01068d0422)
