@@ -13,18 +13,17 @@
 
 Ứng dụng "Hỗ Trợ Nhân Đạo Thông Minh" (Smart Aid) hướng tới việc xây dựng một nền tảng công nghệ hiện đại để quản lý và tối ưu hóa các hoạt động hỗ trợ nhân đạo trong tình huống khẩn cấp.
 
-Mục tiêu là phát triển một hệ thống "Hỗ trợ nhân đạo thông minh". Dựa trên các mô hình ngôn ngữ lớn cùng với kiến trúc microservices bằng low code platform .
-
 Dự án được thực hiện trong cuộc thi [Phần Mềm Nguồn Mở-Olympic Tin học Sinh viên Việt Nam 2024](https://www.olp.vn/procon-pmmn/ph%E1%BA%A7n-m%E1%BB%81m-ngu%E1%BB%93n-m%E1%BB%9F). Được được open source theo giấy phép [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) bởi đội tác giả SMART_TLU.
 
 Để biết thêm chi tiết về cuộc thi, bạn có thể xem tại [đây](https://vfossa.vn/tin-tuc/cong-bo-de-thi-noi-dung-phan-mem-nguon-mo-olympic-tin-hoc-sinh-vien-viet-nam-2024-727.html).
 
-
+## Chú ý:
+Đây là giao diện chính thức của dự án.
+Bạn có thể xem tiếp src code của hệ thống tại đây [BACKEND](https://github.com/pmnm2024/smart_tlu)
 
 ## Giới Thiệu
 
 Ứng dụng "Hỗ Trợ Nhân Đạo Thông Minh" (Smart Aid) hướng tới việc xây dựng một nền tảng công nghệ hiện đại để quản lý và tối ưu hóa các hoạt động hỗ trợ nhân đạo trong tình huống khẩn cấp. Ứng dụng sẽ giúp kết nối các bên liên quan (chính phủ, tổ chức phi chính phủ, nhà tài trợ, và người dân) để phân phối lương thực, vật tư y tế, và các nguồn lực một cách nhanh chóng, minh bạch và hiệu quả.
-
 
 ## Bắt đầu
 Trước hết, hãy clone dự án về máy tính của bạn:
