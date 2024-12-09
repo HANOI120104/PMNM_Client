@@ -3,14 +3,21 @@
 #Bắt đầu
 Trước tiên, chạy máy chủ phát triển:
 
-##bash
-###npm run dev
+```bash
+npm run dev
+```
 hoặc
+```bash
 ###yarn dev
+```
 hoặc
+```bash
 ###pnpm dev
+```
 hoặc
+```bash
 bun dev
+```
 Mở http://localhost:3000 trên trình duyệt của bạn để xem kết quả.
 
 Bạn có thể bắt đầu chỉnh sửa trang bằng cách thay đổi tệp app/page.tsx. Trang sẽ tự động cập nhật khi bạn chỉnh sửa tệp.
