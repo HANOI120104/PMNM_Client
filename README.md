@@ -91,7 +91,7 @@ Nếu bạn muốn đóng góp cho dự án, hãy đọc [CONTRIBUTING.md](.gith
 
 Chúng tôi rất trân trọng mọi đóng góp từ các bạn. Đừng ngần ngại tạo pull request và gửi đến dự án.
 
-Theo dõi ChangeLog tại đây [CHANGELOG.md](.github/CHANGELOG.md)
+Theo dõi ChangeLog tại đây [CHANGELOG.md](CHANGELOG.md)
 ## Liên hệ
 -   Nguyễn Đình Tư: nguyendinhtu11022002@gmail.com
 -   Nguyễn Lê Tuấn Anh: tadzltv22082004@gmail.com
@@ -99,16 +99,5 @@ Theo dõi ChangeLog tại đây [CHANGELOG.md](.github/CHANGELOG.md)
 
 ## License
 This project is licensed under the terms of the [GPL V3](LICENSE) license.
-
-
-
-
-
-
-
-
-
-"# PMNM_Client"
-
 
 
