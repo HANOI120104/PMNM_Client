@@ -98,7 +98,25 @@ Project tập trung vào các chức năng chính như sau:
 ![image](https://github.com/user-attachments/assets/acc84b3e-3a06-4857-b7ce-1c62221645aa)
 ![image](https://github.com/user-attachments/assets/ebd22c23-d8c2-430d-9b4b-c4726e1fd21f)
 
+## Đóng góp cho dự án
 
+<a href="https://github.com/pmnm2024/smart_tlu/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=%F0%9F%90%9B+Bug+Report%3A+">Bug Report ⚠️
+</a>
+
+<a href="https://github.com/pmnm2024/smart_tlu/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=RequestFeature:">Request Feature 👩‍💻</a>
+
+Nếu bạn muốn đóng góp cho dự án, hãy đọc [CONTRIBUTING.md](.github/CONTRIBUTING.md) để tìm hiểu thêm chi tiết.
+
+Chúng tôi rất trân trọng mọi đóng góp từ các bạn. Đừng ngần ngại tạo pull request và gửi đến dự án.
+
+Theo dõi ChangeLog tại đây [CHANGELOG.md](.github/CHANGELOG.md)
+## Liên hệ
+-   Nguyễn Đình Tư: nguyendinhtu11022002@gmail.com
+-   Nguyễn Lê Tuấn Anh: tadzltv22082004@gmail.com
+-   Phạm Nhật Anh: pna120104@gmail.com\
+
+## License
+This project is licensed under the terms of the [GPL V3](LICENSE) license.
 
 
 
