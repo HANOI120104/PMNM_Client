@@ -17,7 +17,7 @@ export default function AccountTab() {
             try {
                 const getCookie = Cookies.get('access_token')
                 // console.log(getCookie)
-                const response = await fetch("http://localhost:8000/api/users/6754be61ac4a078039e53353",
+                const response = await fetch(`http://localhost:8000/api/users/${getCookie}`,
                     {
                         method: 'GET',
                         headers: {
