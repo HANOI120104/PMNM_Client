@@ -47,7 +47,7 @@ export default function SupportReportDetail() {
     const getCookie = Cookies.get("access_token");
     try {
       const response = await fetchApi(
-        `http://localhost:8000/api/users/${getCookie}`,
+        `/api/users/${getCookie}`,
         "GET",
         formData
       );
