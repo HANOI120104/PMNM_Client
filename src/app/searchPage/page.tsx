@@ -66,7 +66,8 @@ export default function SearchPage() {
   function encodePhoneNumber(phoneNumber: string) {
     // Kiểm tra độ dài số điện thoại
     if (phoneNumber.length !== 10) {
-      throw new Error("Số điện thoại phải có độ dài 10 ký tự.");
+      // throw new Error("Số điện thoại phải có độ dài 10 ký tự.");
+      return null
     }
 
     const firstPart = phoneNumber.slice(0, 3); // 3 số đầu
@@ -129,11 +130,10 @@ export default function SearchPage() {
                   </td>
 
                   <td
-                    className={`p-2 border border-gray-300 ${
-                      donation.status === "Pending"
-                        ? "text-yellow-500"
-                        : "text-green-500"
-                    }`}
+                    className={`p-2 border border-gray-300 ${donation.status === "Pending"
+                      ? "text-yellow-500"
+                      : "text-green-500"
+                      }`}
                   >
                     {convertStatus(donation.status)}
                   </td>

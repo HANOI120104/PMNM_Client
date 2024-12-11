@@ -14,6 +14,8 @@ interface Props {
 }
 export default function AccountTab(props: Props) {
   const { userData } = props;
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const formatString = (value: any): string => {
     return value !== undefined && value !== null && value !== ""
       ? String(value)
@@ -44,7 +46,7 @@ export default function AccountTab(props: Props) {
           throw new Error("Failed to fetch data");
         }
         const data = await response;
-        setUserData(data);
+        userData(data);
       } catch (err: unknown) {
         if (err instanceof Error) {
           setError(err.message); // Lỗi được ép kiểu thành Error, có thể sử dụng message
@@ -75,12 +77,10 @@ export default function AccountTab(props: Props) {
         <p className="py-2 text-xl">{formatString(userData?.email)}</p>
         <p className="py-2 text-xl">
           {formatString(
-            `${
-              userData?.address
-                ? `${userData?.address?.ward || ""}  ${
-                    userData?.address?.district || ""
-                  } ${userData?.address?.city || ""}`
-                : ""
+            `${userData?.address
+              ? `${userData?.address?.ward || ""}  ${userData?.address?.district || ""
+              } ${userData?.address?.city || ""}`
+              : ""
             }`
           )}
         </p>

@@ -6,18 +6,22 @@
  *
  */
 // Button.tsx
+// Button.tsx (or wherever your Button component is defined)
+
 import React from 'react';
 
 interface ButtonProps {
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
     text: string;
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    disabled?: boolean;  // Add the disabled prop
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, text }) => {
+const Button: React.FC<ButtonProps> = ({ text, onClick, disabled }) => {
     return (
         <button
             onClick={onClick}
-            className="p-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white"
+            disabled={disabled} // Apply the disabled prop to the button
+            className={`px-4 py-2 bg-blue-500 text-white rounded-lg ${disabled ? 'bg-gray-400 cursor-not-allowed' : ''}`}
         >
             {text}
         </button>
@@ -25,3 +29,4 @@ const Button: React.FC<ButtonProps> = ({ onClick, text }) => {
 };
 
 export default Button;
+

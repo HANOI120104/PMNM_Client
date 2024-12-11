@@ -16,8 +16,14 @@ import Cookies from "js-cookie";
 import { showErrorToast, showSuccessToast } from "@/components/Toast/toast";
 import fetchApi from "@/utils/fetchApi";
 import { HTTPMethod } from "@/types/enum";
+import Link from "next/link";
 
 export default function Login() {
+  // const token = Cookies.get('access_token');
+  // if (token) {
+
+  // }
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -33,7 +39,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      
+
       const response = await fetchApi(
         "/api/login",
         HTTPMethod.POST,
@@ -116,7 +122,8 @@ export default function Login() {
 
             {/* Forget Password */}
             <div className="my-6 text-right">
-              <ForgetPassword />
+              <a href="/ForgetPasswordPage" className="font-bold text-black"></a>
+              <Link href="/ForgetPasswordPage" className="font-bold text-black">Quên mật khẩu</Link>
             </div>
 
             {/* Submit Button */}

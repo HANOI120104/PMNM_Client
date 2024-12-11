@@ -23,8 +23,8 @@ export default function AccountPage() {
   const [lat, setLat] = useState<number>(0);
   const [long, setLong] = useState<number>(0);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null); 
-  const attendance = () => {};
+  const [error, setError] = useState<string | null>(null);
+  const attendance = () => { };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,7 +68,7 @@ export default function AccountPage() {
       );
       console.log(result);
       return;
-    } catch (error) {}
+    } catch (error) { }
   };
   // Function to render the active tab content
   const renderTabContent = () => {
@@ -78,9 +78,9 @@ export default function AccountPage() {
       case "updateAccount":
         return <UpdateAccountTab userData={userData} />;
       case "donationHistory":
-        return <DonationHistoryTab />;
+        return <DonationHistoryTab userData={userData} />;
       case "supportedHistory":
-        return <SupportedHistoryTab />;
+        return <SupportedHistoryTab userData={userData} />;
       case "changePassword":
         return <ChangePasswordTab />;
       default:
@@ -155,49 +155,44 @@ export default function AccountPage() {
             <div className="border-b-2 p-4">
               <nav className="gap-4 flex justify-between">
                 <button
-                  className={`px-4 py-2 ${
-                    activeTab === "profile" ? "font-bold text-blue-500" : ""
-                  }`}
+                  className={`px-4 py-2 ${activeTab === "profile" ? "font-bold text-blue-500" : ""
+                    }`}
                   onClick={() => setActiveTab("profile")}
                 >
                   Hồ Sơ
                 </button>
                 <button
-                  className={`px-4 py-2 ${
-                    activeTab === "updateAccount"
-                      ? "font-bold text-blue-500"
-                      : ""
-                  }`}
+                  className={`px-4 py-2 ${activeTab === "updateAccount"
+                    ? "font-bold text-blue-500"
+                    : ""
+                    }`}
                   onClick={() => setActiveTab("updateAccount")}
                 >
                   Thay đổi hồ sơ
                 </button>
                 <button
-                  className={`px-4 py-2 ${
-                    activeTab === "donationHistory"
-                      ? "font-bold text-blue-500"
-                      : ""
-                  }`}
+                  className={`px-4 py-2 ${activeTab === "donationHistory"
+                    ? "font-bold text-blue-500"
+                    : ""
+                    }`}
                   onClick={() => setActiveTab("donationHistory")}
                 >
                   Lịch sử từ thiện
                 </button>
                 <button
-                  className={`px-4 py-2 ${
-                    activeTab === "supportedHistory"
-                      ? "font-bold text-blue-500"
-                      : ""
-                  }`}
+                  className={`px-4 py-2 ${activeTab === "supportedHistory"
+                    ? "font-bold text-blue-500"
+                    : ""
+                    }`}
                   onClick={() => setActiveTab("supportedHistory")}
                 >
                   Lịch sử yêu cầu
                 </button>
                 <button
-                  className={`px-4 py-2 ${
-                    activeTab === "changePassword"
-                      ? "font-bold text-blue-500"
-                      : ""
-                  }`}
+                  className={`px-4 py-2 ${activeTab === "changePassword"
+                    ? "font-bold text-blue-500"
+                    : ""
+                    }`}
                   onClick={() => setActiveTab("changePassword")}
                 >
                   Cập nhật mật khẩu

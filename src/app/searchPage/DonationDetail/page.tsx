@@ -5,11 +5,94 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+'use client'
+import Select from '@/components/ui/app.selectninput'
+import fetchApi from '@/utils/fetchApi';
+import { useState } from 'react';
+import Cookies from "js-cookie";
+import Location from '@/components/features/supportedRequest/loaction'
 
-import fetchApi from "@/utils/fetchApi"
 
-export default function Donation() {
+export default function DonationDetail() {
+    const [formData, setFormData] = useState({
+        accountNumber: "string",
+        amount: 0,
+        bank: "string",
+        city: "string",
 
+        description: "string",
+        detailAddress: "string",
+        district: "string",
+        email: "string",
+        fullName: "string",
+        id: "string",
+        paymentMethod: "CreditCard",
+        phone: "string",
+        status: "Pending",
+        supportRequestTypeId: "string",
+        supportRequestTypeName: "string",
+
+
+        ward: "string"
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const getCookie = Cookies.get('access_token')
+        try {
+            const response = await fetchApi(`http://localhost:8000/api/users/${getCookie}`, 'GET', formData);
+            console.log('Register success:', response);
+
+        } catch (error) {
+            console.error('Register failed:', error);
+        }
+    };
+
+    const [coordinates, setCoordinates] = useState<string>('');  // Sử dụng useState để lưu trữ thông tin tọa độ
+
+    const getCurrentCoordinates = () => {
+        // Kiểm tra nếu trình duyệt hỗ trợ Geolocation API
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position: GeolocationPosition) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    setCoordinates(`Latitude: ${lat}, Longitude: ${lon}`);
+                    console.log("Latitude:", lat);
+                    console.log("Longitude:", lon);
+                },
+                (error: GeolocationPositionError) => {
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            setCoordinates("Người dùng từ chối truy cập vị trí.");
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            setCoordinates("Thông tin vị trí không khả dụng.");
+                            break;
+                        case error.TIMEOUT:
+                            setCoordinates("Yêu cầu lấy vị trí bị hết thời gian.");
+                            break;
+                        default:
+                            setCoordinates("Đã xảy ra lỗi không xác định.");
+                            break;
+                    }
+                    console.error("Lỗi:", error.message);
+                }
+            );
+        } else {
+            setCoordinates("Trình duyệt không hỗ trợ Geolocation.");
+            console.error("Trình duyệt không hỗ trợ Geolocation API.");
+        }
+    };
 
     return (
         <div className="relative z-0 w-full box-border "

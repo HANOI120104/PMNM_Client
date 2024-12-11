@@ -42,12 +42,17 @@ export default function Header() {
 
                 {/* Menu cho laptop */}
                 <nav className="hidden md:flex gap-10 items-center">
-
+                    <Link
+                        href="/searchSupported"
+                        className="font-bold text-black hover:text-[#E53634]  hover:border-[#E53634]"
+                    >
+                        Tra cứu yêu cầu hỗ trợ
+                    </Link>
                     <Link
                         href="/searchPage"
                         className="font-bold text-black hover:text-[#E53634]  hover:border-[#E53634]"
                     >
-                        Tra cứu
+                        Tra cứu ủng hộ
                     </Link>
                     <Link
                         href="/signup"

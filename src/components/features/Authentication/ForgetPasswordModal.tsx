@@ -55,7 +55,7 @@ export default function ForgotPasswordModal() {
                         >
                             ×
                         </button>
-                        <form onSubmit={handleSubmit} className="container mx-auto text-center">
+                        <div onSubmit={handleSubmit} className="container mx-auto text-center">
                             <h2 className="my-4 text-2xl font-semibold">Khôi phục mật khẩu</h2>
                             <div className="space-y-4   ">
                                 {/* Username Input */}
@@ -82,7 +82,7 @@ export default function ForgotPasswordModal() {
                                 <Button text="Quay lại" onClick={() => setIsModalOpen(false)} />
                                 <Button text="Khôi phục mật khẩu" onClick={handleSubmit} />
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             )}
