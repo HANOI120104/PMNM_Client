@@ -70,7 +70,7 @@ export default function Login() {
       }
     } catch (error) {
       console.error("Error logging in:", error);
-      showErrorToast("Đã xảy ra lỗi. Vui lòng thử lại!");
+      showErrorToast("Đăng nhập thất bại vui lòng đăng nhập lại!");
     }
   };
 

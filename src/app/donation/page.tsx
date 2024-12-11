@@ -66,8 +66,25 @@ export default function Donation() {
 
   const handleCreate = async () => {
     try {
-      if(selectType === "Tiền"){
-        alert("ok")
+      if (selectType === "Tiền") {
+        const payload = {
+          description,
+          amount,
+          phone: userDetail.phone,
+          fullName: userDetail.fullName,
+          city: userDetail.city,
+          district: userDetail.district,
+          ward: userDetail.ward,
+        };
+        const urlPay = await fetchApi(
+          `/api/donations/createdVNPAY`,
+          HTTPMethod.POST,
+          payload
+        );
+        if(urlPay.data){
+          window.location.href = urlPay.data;
+          return;
+        }
         return;
       }
 
@@ -185,13 +202,7 @@ export default function Donation() {
                 </label>
               </div>
               <div className="col-span-2">
-                {/* <select
-                  name="district"
-                  id="district"
-                  className="w-full border border-gray-300 rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                >
-                  <option value="Đống Đa">Đống Đa</option>
-                </select> */}
+          
                 <input
                   type="text"
                   id="district"
