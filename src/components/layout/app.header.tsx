@@ -44,25 +44,25 @@ export default function Header() {
                 <nav className="hidden md:flex gap-10 items-center">
 
                     <Link
-                        href="/SearchPage"
+                        href="/searchPage"
                         className="font-bold text-black hover:text-[#E53634]  hover:border-[#E53634]"
                     >
                         Tra cứu
                     </Link>
                     <Link
-                        href="/Sign_Up"
+                        href="/signup"
                         className="font-bold text-black hover:text-[#E53634]  hover:border-[#E53634]"
                     >
                         Tình nguyện viên
                     </Link>
                     <Link
-                        href="/Donation"
+                        href="/donation"
                         className="font-bold text-black hover:text-[#E53634]  hover:border-[#E53634]"
                     >
                         Ủng hộ
                     </Link>
                     <Link
-                        href="/SupportRequest"
+                        href="/supportRequest"
                         className="font-bold text-white bg-[#E53634] px-8 py-4 rounded-md hover:bg-blue-800"
                     >
                         Tôi cần giúp đỡ
@@ -72,7 +72,7 @@ export default function Header() {
                         <>
                             {/* Hiển thị khi chưa đăng nhập */}
                             <Link
-                                href="/Sign_In"
+                                href="/signin"
                                 className="font-bold text-black hover:text-[#E53634]  hover:border-[#E53634]"
                             >
                                 Đăng nhập
@@ -82,7 +82,7 @@ export default function Header() {
                         <>
                             {/* Hiển thị khi đã đăng nhập */}
                             <Link
-                                href="/Account"
+                                href="/account"
                                 className="font-bold text-black hover:text-[#E53634]  hover:border-[#E53634]"
                             >
                                 Tài khoản
@@ -129,25 +129,25 @@ export default function Header() {
                         Tin tức
                     </Link>
                     <Link
-                        href="/SearchPage"
+                        href="/searchPage"
                         className="font-bold text-white hover:text-[#E53634]  hover:border-[#E53634]"
                     >
                         Tra cứu
                     </Link>
                     <Link
-                        href="/Sign_Up"
+                        href="/signup"
                         className="font-bold text-white hover:text-[#E53634]  hover:border-[#E53634]"
                     >
                         Tình nguyện viên
                     </Link>
                     <Link
-                        href="/Donation"
+                        href="/donation"
                         className="font-bold text-white hover:text-[#E53634]  hover:border-[#E53634]"
                     >
                         Ủng hộ
                     </Link>
                     <Link
-                        href="/SupportRequest"
+                        href="/supportRequest"
                         className="font-bold text-white bg-[#E53634] px-3 py-2 rounded-md"
                     >
                         Tôi cần giúp đỡ
@@ -156,7 +156,7 @@ export default function Header() {
                         <>
                             {/* Hiển thị khi chưa đăng nhập */}
                             <Link
-                                href="/Sign_In"
+                                href="/signin"
                                 className="font-bold text-white hover:text-[#E53634]  hover:border-[#E53634]"
                             >
                                 Đăng nhập
@@ -166,7 +166,7 @@ export default function Header() {
                         <>
                             {/* Hiển thị khi đã đăng nhập */}
                             <Link
-                                href="/Account"
+                                href="/account"
                                 className="font-bold text-white hover:text-[#E53634]  hover:border-[#E53634]"
                             >
                                 Tài khoản

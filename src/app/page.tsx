@@ -14,7 +14,7 @@ import { createChat } from '@n8n/chat';
 export default function Home() {
   const slides = [
     { id: 1, image: "https://images.pexels.com/photos/933624/pexels-photo-933624.jpeg", caption: "Số điện thoại khẩn cấp: 0123 4567 hoặc bấm nút", url: "/SupportRequest", content: "Tôi cần giúp đỡ" },
-    { id: 2, image: "https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg", caption: "Tham gia chung tay vun vén ảnh lửa nhỏ", url: "/Sign_Up", content: "Trở thành tình nguyện viên" },
+    { id: 2, image: "https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg", caption: "Tham gia chung tay vun vén ảnh lửa nhỏ", url: "/signup", content: "Trở thành tình nguyện viên" },
     { id: 3, image: "https://images.pexels.com/photos/6471969/pexels-photo-6471969.jpeg", caption: "Ủng hộ để giúp đỡ những hoàn cảnh khó khăn giữ gìn truyền thống lá lành đùm lá rách", url: "/Donation", content: "Trở thành mạnh thường quân" },
   ];
 
