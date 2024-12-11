@@ -79,6 +79,7 @@ export default function SearchPage() {
   return (
     <div className="relative z-0 w-full box-border py-20">
       <div className="container mx-auto py-10 px-4">
+        <h1>Tra cứu đơn yêu cầu giúp đỡ</h1>
         {/* Search Bar */}
         <div className="flex flex-wrap items-center my-6">
           <p className="text-xl font-medium mb-2 sm:mb-0">Tra cứu</p>

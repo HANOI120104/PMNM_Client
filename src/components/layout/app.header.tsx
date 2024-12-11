@@ -36,7 +36,7 @@ export default function Header() {
                 <div className="flex items-center">
                     <Link href="/" className="flex items-center">
                         <img src="img/logo.png" alt="Logo" className="object-cover h-16" />
-                        <h2 className="text-4xl font-bold ml-2 delay-100 hover:text-[#E53634] md:block">FREE FIRE</h2>
+                        <h2 className="text-4xl font-bold ml-2 delay-100 hover:text-[#E53634] md:block">ATA</h2>
                     </Link>
                 </div>
 
@@ -58,7 +58,13 @@ export default function Header() {
                         href="/signup"
                         className="font-bold text-black hover:text-[#E53634]  hover:border-[#E53634]"
                     >
-                        Tình nguyện viên
+                        Đăng ký thành viên
+                    </Link>
+                    <Link
+                        href="/Mission"
+                        className="font-bold text-black hover:text-[#E53634]  hover:border-[#E53634]"
+                    >
+                        Nhiệm vụ
                     </Link>
                     <Link
                         href="/donation"
