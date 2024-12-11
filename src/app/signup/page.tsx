@@ -21,13 +21,13 @@ export default function Register() {
     firstName: "",
     lastName: "",
     sex: "",
-    // roles: "user",
     phone: "",
     email: "",
     city: "",
     district: "",
     ward: "",
     street: "",
+    roles: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,12 +41,21 @@ export default function Register() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { confirmPass, district, ward, city, street, sex, ...sanitizedData } =
-      formData;
+    const {
+      confirmPass,
+      district,
+      ward,
+      city,
+      street,
+      sex,
+      roles,
+      ...sanitizedData
+    } = formData;
 
     const newData = {
       ...sanitizedData,
       sex: sex,
+      roles: [roles],
       address: {
         city,
         district,
@@ -278,6 +287,30 @@ export default function Register() {
                 className="w-full sm:w-[90%] border-b-2 px-2 py-2"
                 placeholder="Nhập thành phố của bạn"
               />
+            </div>
+
+            <div className="col-span-1 flex justify-start items-center pl-6">
+              <label htmlFor="role" className="mr-4">
+                Vai trò
+              </label>
+            </div>
+            <div className="col-span-2 flex justify-start items-center">
+              <select
+                id="roles"
+                name="roles"
+                value={formData.roles}
+                onChange={(e) =>
+                  setFormData({ ...formData, roles: e.target.value })
+                }
+                className="w-full sm:w-[90%] border-b-2 px-2 py-2"
+                required
+              >
+                <option value="" disabled>
+                  Chọn vai trò của bạn
+                </option>
+                <option value="user">Người dùng</option>
+                <option value="member">Tình nguyện viên</option>
+              </select>
             </div>
 
             <div className="col-span-3 w-full mt-10">

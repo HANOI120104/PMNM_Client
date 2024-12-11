@@ -2,6 +2,7 @@
 import useSWR from "swr";
 import { useState } from "react";
 import { API_BASE_URL } from "@/utils/fetchApi";
+import Loading from "@/components/Loading/Loading";
 
 // Fetcher function for SWR
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -40,7 +41,7 @@ export default function SearchPage() {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (error) {
@@ -67,7 +68,7 @@ export default function SearchPage() {
     // Kiểm tra độ dài số điện thoại
     if (phoneNumber.length !== 10) {
       // throw new Error("Số điện thoại phải có độ dài 10 ký tự.");
-      return null
+      return null;
     }
 
     const firstPart = phoneNumber.slice(0, 3); // 3 số đầu
@@ -79,7 +80,10 @@ export default function SearchPage() {
   return (
     <div className="relative z-0 w-full box-border py-20">
       <div className="container mx-auto py-10 px-4">
-        <h1>Tra cứu đơn yêu cầu giúp đỡ</h1>
+        <h1 className="text-center text-4xl mt-2">
+          Tra cứu đơn yêu cầu giúp đỡ
+        </h1>
+
         {/* Search Bar */}
         <div className="flex flex-wrap items-center my-6">
           <p className="text-xl font-medium mb-2 sm:mb-0">Tra cứu</p>
@@ -101,6 +105,7 @@ export default function SearchPage() {
           <table className="w-full table-auto border-collapse border border-gray-300">
             <thead className="bg-gray-200">
               <tr>
+                <th className="p-2 border border-gray-300">Mã đơn</th>
                 <th className="p-2 border border-gray-300">
                   Họ và tên người ủng hộ
                 </th>
@@ -113,17 +118,20 @@ export default function SearchPage() {
             </thead>
             <tbody>
               {paginatedData?.map((donation: any) => (
-                <tr key={donation.id} className="text-center">
+                <tr key={donation?.id} className="text-center">
                   <td className="p-2 border border-gray-300">
-                    {donation.fullName}
+                    {donation?.donationCode}
+                  </td>
+                  <td className="p-2 border border-gray-300">
+                    {donation?.fullName}
                   </td>
 
                   <td className="p-2 border border-gray-300">
-                    {encodePhoneNumber(donation.phone)}
+                    {encodePhoneNumber(donation?.phone)}
                   </td>
 
                   <td className="p-2 border border-gray-300">
-                    {donation.supportRequestTypeName}
+                    {donation?.supportRequestTypeName}
                   </td>
 
                   <td className="p-2 border border-gray-300">
@@ -131,16 +139,17 @@ export default function SearchPage() {
                   </td>
 
                   <td
-                    className={`p-2 border border-gray-300 ${donation.status === "Pending"
-                      ? "text-yellow-500"
-                      : "text-green-500"
-                      }`}
+                    className={`p-2 border border-gray-300 ${
+                      donation?.status === "Pending"
+                        ? "text-yellow-500"
+                        : "text-green-500"
+                    }`}
                   >
-                    {convertStatus(donation.status)}
+                    {convertStatus(donation?.status)}
                   </td>
 
                   <td className="p-2 border border-gray-300">
-                    {donation.description}
+                    {donation?.description}
                   </td>
                 </tr>
               ))}

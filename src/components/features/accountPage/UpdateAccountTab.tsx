@@ -18,7 +18,7 @@ interface Props {
 }
 export default function Update(props: Props) {
   const { userData } = props;
-  const router = useRouter()
+  const router = useRouter();
   const [formData, setFormData] = useState({
     // name: "",
     firstName: "",
@@ -77,7 +77,8 @@ export default function Update(props: Props) {
 
       if (response) {
         showSuccessToast("Cập nhật thông tin thành công!");
-        router.refresh()
+        window.location.reload();
+        // router.refresh()
       }
     } catch (error) {
       showErrorToast("Có lỗi xảy ra, vui lòng thử lại.");

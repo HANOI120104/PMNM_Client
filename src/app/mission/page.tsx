@@ -1,12 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import AccountTab from "@/components/features/accountPage/AccountTab";
-import ChangePasswordTab from "@/components/features/accountPage/ChangePasswordTab";
-import UpdateAccountTab from "@/components/features/accountPage/UpdateAccountTab";
-import DonationHistoryTab from "@/components/features/accountPage/DonationHistoryTab";
-import SupportedHistoryTab from "@/components/features/accountPage/SupportedHistoryTab";
-import WorkplanTab from "@/components/features/accountPage/WorkplanTab";
 import fetchApi from "@/utils/fetchApi";
 import { HTTPMethod } from "@/types/enum";
 import Cookies from "js-cookie";

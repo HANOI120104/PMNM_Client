@@ -5,45 +5,48 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-'use client';
-import { useState } from 'react';
-import InputField from '@/components/ui/InputField'; // Import InputField
-import Button from '@/components/ui/Button';         // Import Button
+"use client";
+
+import { useState } from "react";
+import InputField from "@/components/ui/InputField"; // Import InputField
+import Button from "@/components/ui/Button"; // Import Button
 
 export default function ForgotPasswordModal() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
+  };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle the password recovery logic here
+    console.log("Password recovery request:", formData);
+    // Close modal after submission
+    setIsModalOpen(false);
+  };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Handle the password recovery logic here
-        console.log('Password recovery request:', formData);
-    };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
-
-    return (
-        <>
-            {/* Trigger Button */}
-            <button
-                className="text-blue-500 underline"
-                onClick={() => setIsModalOpen(true)}
-            >
-                Quên mật khẩu?
-            </button>
+  return (
+    <>
+      {/* Trigger Button */}
+      <button
+        className="text-blue-500 underline"
+        onClick={() => setIsModalOpen(true)}
+      >
+        Quên mật khẩu?
+      </button>
 
             {/* Modal */}
             {isModalOpen && (
@@ -55,7 +58,7 @@ export default function ForgotPasswordModal() {
                         >
                             ×
                         </button>
-                        <div onSubmit={handleSubmit} className="container mx-auto text-center">
+                        <form onSubmit={handleSubmit} className="container mx-auto text-center">
                             <h2 className="my-4 text-2xl font-semibold">Khôi phục mật khẩu</h2>
                             <div className="space-y-4   ">
                                 {/* Username Input */}
@@ -68,21 +71,21 @@ export default function ForgotPasswordModal() {
                                     placeholder="Nhập tên đăng nhập"
                                 />
 
-                                {/* Email Input */}
-                                <InputField
-                                    label="Email"
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleInputChange}
-                                    placeholder="Nhập email của bạn"
-                                />
+                {/* Email Input */}
+                <InputField
+                  label="Email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Nhập email của bạn"
+                />
 
                                 {/* Submit Button */}
                                 <Button text="Quay lại" onClick={() => setIsModalOpen(false)} />
                                 <Button text="Khôi phục mật khẩu" onClick={handleSubmit} />
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             )}

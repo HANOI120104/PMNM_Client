@@ -15,7 +15,6 @@ interface Props {
 export default function AccountTab(props: Props) {
   const { userData } = props;
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
   const formatString = (value: any): string => {
     return value !== undefined && value !== null && value !== ""
       ? String(value)
@@ -32,34 +31,6 @@ export default function AccountTab(props: Props) {
         return null;
     }
   };
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const id = Cookies.get("id");
-        const response = await fetchApi(
-          `/api/users/${id}`,
-          HTTPMethod.GET,
-          null,
-          true
-        ); // Thay URL bằng API của bạn
-        if (!response) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response;
-        userData(data);
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err.message); // Lỗi được ép kiểu thành Error, có thể sử dụng message
-        } else {
-          setError("Đã xảy ra lỗi không xác định");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <div className="grid grid-cols-3 p-4">
@@ -68,6 +39,12 @@ export default function AccountTab(props: Props) {
         <p className="py-2 font-bold text-xl">Giới tính:</p>
         <p className="py-2 font-bold text-xl">Email:</p>
         <p className="py-2 font-bold text-xl">Địa chỉ:</p>
+        {userData && userData.roles[0] === "member" && (
+          <>
+            <p className="py-2 font-bold text-xl">Điểm:</p>
+            <p className="py-2 font-bold text-xl">Rank:</p>
+          </>
+        )}
       </div>
       <div className="text-left col-span-2 my-2">
         <p className="py-2 text-xl">
@@ -84,6 +61,12 @@ export default function AccountTab(props: Props) {
             }`
           )}
         </p>
+        {userData && userData.roles[0] === "member" && (
+          <>
+            <p className="py-2 text-xl">{userData?.score ?? 0}</p>
+            <p className="py-2 text-xl">Bạc</p>
+          </>
+        )}
       </div>
     </div>
   );

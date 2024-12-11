@@ -18,7 +18,7 @@ async function fetchApi(url: string, method: string = 'GET', body: any = null, a
         if (getCookie) {
             headers['Authorization'] = `Bearer ${getCookie}`;
         } else {
-            console.warn('No token found in localStorage');
+            throw new Error("Không có token")
         }
     }
 

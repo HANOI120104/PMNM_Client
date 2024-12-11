@@ -22,3 +22,45 @@ body {
       transparent,
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 } */
+
+@keyframes ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-ring {
+  animation: ring 0.5s ease-in-out;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #a0aec0 #edf2f7; /* Firefox */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #edf2f7; /* Màu nền */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #a0aec0; /* Màu thanh cuộn */
+  border-radius: 10px; /* Bo góc */
+  border: 2px solid #edf2f7; /* Khoảng cách với track */
+}

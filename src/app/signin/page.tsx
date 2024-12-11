@@ -7,8 +7,7 @@
  */
 
 "use client";
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputField from "@/components/ui/InputField";
 import ForgetPassword from "@/components/features/Authentication/ForgetPasswordModal";
 import { useRouter } from "next/navigation"; // Import useRouter
@@ -19,16 +18,13 @@ import { HTTPMethod } from "@/types/enum";
 import Link from "next/link";
 
 export default function Login() {
-  // const token = Cookies.get('access_token');
-  // if (token) {
-
-  // }
-
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
   const router = useRouter(); // Initialize the router
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const toggleModal = () => setShowModal((prev) => !prev);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -39,7 +35,6 @@ export default function Login() {
     e.preventDefault();
 
     try {
-
       const response = await fetchApi(
         "/api/login",
         HTTPMethod.POST,
@@ -63,7 +58,8 @@ export default function Login() {
             secure: true, // Ensures the cookie is only sent over HTTPS
             sameSite: "strict", // Prevents CSRF attacks
           });
-          router.push("/");
+          router.refresh();
+          // router.push("/");
           // // Store token securely (example: sessionStorage)
           // sessionStorage.setItem('authToken', result.token);
 
@@ -80,6 +76,12 @@ export default function Login() {
     }
   };
 
+  useEffect(() => {
+    const token = Cookies.get("access_token");
+    if (token) {
+      router.push("/");
+    }
+  }, []);
   return (
     <>
       <div
@@ -122,8 +124,13 @@ export default function Login() {
 
             {/* Forget Password */}
             <div className="my-6 text-right">
-              <a href="/ForgetPasswordPage" className="font-bold text-black"></a>
-              <Link href="/ForgetPasswordPage" className="font-bold text-black">Quên mật khẩu</Link>
+              <button
+                type="button"
+                onClick={toggleModal}
+                className="text-blue-500"
+              >
+                Quên mật khẩu?
+              </button>
             </div>
 
             {/* Submit Button */}
@@ -145,6 +152,7 @@ export default function Login() {
             </div>
           </form>
         </div>
+        {showModal && <ForgetPassword />}
       </div>
     </>
   );

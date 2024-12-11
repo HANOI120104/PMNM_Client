@@ -45,12 +45,6 @@ const GetCoordinates: React.FC = () => {
         }
     };
 
-    return (
-        <div>
-            <button onClick={getCurrentCoordinates}>Lấy tọa độ</button>
-            <p id="coordinates">{coordinates}</p>
-        </div>
-    );
 };
 
 export default GetCoordinates;

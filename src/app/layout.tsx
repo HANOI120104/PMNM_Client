@@ -13,6 +13,7 @@ import AppHeader from "@/components/layout/app.header";
 import AppFooter from "@/components/layout/app.footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NotificationPermission from "./components/NotificationPermission";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`flex flex-col min-h-screen ${inter.className}`}>
+        <NotificationPermission />
+
         <ToastContainer position="top-right" autoClose={5000} />
 
         <AppHeader />

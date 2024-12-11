@@ -4,6 +4,7 @@ import { HTTPMethod } from "@/types/enum";
 
 import { useState } from "react";
 import fetchApi from "@/utils/fetchApi";
+import Link from "next/link";
 
 export default function ForgetPassword() {
     const [formData, setFormData] = useState({
@@ -79,9 +80,9 @@ export default function ForgetPassword() {
                         </div>
                         <div className="col-span-3 flex justify-center w-full mt-10">
                             <div className="flex flex-grow justify-center gap-4">
-                                <a href="/signin" className="border-2 border-blue-400 delay-75 w-[90%] py-2 rounded-xl text-blue-400 hover:text-white hover:bg-blue-400">
+                                <Link href="/signin" className="border-2 border-blue-400 delay-75 w-[90%] py-2 rounded-xl text-blue-400 hover:text-white hover:bg-blue-400">
                                     Quay lại
-                                </a>
+                                </Link>
                                 <button
                                     className="border-2 border-blue-400 delay-75 w-[90%] py-2 rounded-xl text-blue-400 hover:text-white hover:bg-blue-400"
                                     disabled={isSubmitting} // Disable button while submitting

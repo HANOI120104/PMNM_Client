@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
-import { showErrorToast } from './components/Toast/toast';
 
 function isAuthenticated(req: NextRequest) {
   const token = req.cookies.get('access_token');
@@ -8,16 +7,27 @@ function isAuthenticated(req: NextRequest) {
 }
 
 export function middleware(req: NextRequest) {
-  const url = req.url;
-  // console.log("🚀 ~ middleware ~ url:", url)
+  const url = req.nextUrl.clone();
 
-  if (!isAuthenticated(req)) {
-    return NextResponse.redirect(new URL('/signin', url));
+  // Skip middleware logic if user is already at `/signin` and unauthenticated
+  if (url.pathname === "/signin" && !isAuthenticated(req)) {
+    return NextResponse.next(); // Allow access to `/signin`
   }
 
+  // Redirect unauthenticated users trying to access protected routes
+  if (!isAuthenticated(req)) {
+    return NextResponse.redirect(new URL('/signin', req.url));
+  }
+
+  // Prevent authenticated users from accessing `/signin`
+  if (url.pathname === "/signin" && isAuthenticated(req)) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
+
+  // Proceed with request if all conditions are met
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/donation', '/account'],
+  matcher: ['/account', '/signin'], // Middleware applies to `/account` and `/signin`
 };
