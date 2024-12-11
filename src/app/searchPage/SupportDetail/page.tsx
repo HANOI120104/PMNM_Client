@@ -7,11 +7,9 @@
  */
 
 "use client";
-import Select from "@/components/ui/app.selectninput";
 import fetchApi from "@/utils/fetchApi";
 import { useState } from "react";
 import Cookies from "js-cookie";
-import Location from "@/components/features/supportedRequest/loaction";
 import Link from "next/link";
 
 export default function SupportReportDetail() {
@@ -275,7 +273,6 @@ export default function SupportReportDetail() {
                 Xác Nhận
               </button>
             </div>
-            <Location></Location>
             <div className="col-span-3 flex justify-center my-4 gap-2">
               <p>Liên hệ với chúng tôi qua số điện thoại</p>
               <Link href="" className="font-bold text-blue-400">

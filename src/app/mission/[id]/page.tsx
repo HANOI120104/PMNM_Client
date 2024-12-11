@@ -67,7 +67,6 @@ export default function AccountPage() {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
-
   return (
     <div className="relative z-0 py-20 w-full box-border bg-cover bg-center">
       <div className="container py-20 mx-auto text-center grid grid-cols-6">
@@ -89,10 +88,9 @@ export default function AccountPage() {
         <div className="col-span-4 mx-4">
           <div className="p-4 border-2 rounded-xl bg-white">
             <div className="mt-6">
-              {Object.entries(formValues).map(([key, value]) => (
-                <div className="my-4">
+              {Object.entries(formValues).map(([key, value], index) => (
+                <div key={index} className="my-4">
                   <InputField
-                    key={key}
                     label={key.charAt(0).toUpperCase() + key.slice(1)}
                     type="text"
                     name={key}

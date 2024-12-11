@@ -10,10 +10,15 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { showSuccessToast } from "../Toast/toast";
 import { useRouter } from "next/navigation";
+type Notification = {
+  id: number;
+  message: string;
+  timestamp: string;
+};
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [notifications, setNotifications] = useState([]); // Dữ liệu thông báo
+  const [notifications, setNotifications] = useState<any[]>([]);
   const [unreadCount, setUnreadCount] = useState(0); // Số lượng thông báo chưa đọc
   const [isNotificationOpen, setIsNotificationOpen] = useState(false); // Trạng thái mở thông báo
   const [isRinging, setIsRinging] = useState(false); // Trạng thái chuông đổ

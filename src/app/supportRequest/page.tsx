@@ -7,11 +7,9 @@
  */
 
 "use client";
-import Select from "@/components/ui/app.selectninput";
 import fetchApi, { API_BASE_URL } from "@/utils/fetchApi";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import Location from "@/components/features/supportedRequest/loaction";
 import { HTTPMethod } from "@/types/enum";
 import useSWR from "swr";
 import { showErrorToast, showSuccessToast } from "@/components/Toast/toast";
@@ -374,7 +372,7 @@ export default function SupportReport() {
                 </div>
 
                 {/* Hiển thị thông tin tọa độ */}
-                <Location></Location>
+                {/* <Location></Location> */}
 
                 {/* Liên hệ */}
                 <div className="col-span-3 flex justify-center my-4 gap-2">

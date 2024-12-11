@@ -10,7 +10,7 @@ import Select from '@/components/ui/app.selectninput'
 import fetchApi from '@/utils/fetchApi';
 import { useState } from 'react';
 import Cookies from "js-cookie";
-import Location from '@/components/features/supportedRequest/loaction'
+// import Location from '@/components/features/supportedRequest/loaction'
 
 
 export default function DonationDetail() {
